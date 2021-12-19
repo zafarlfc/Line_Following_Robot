@@ -98,62 +98,62 @@ int main ( void )
        // Initialize the timer	
     Timer1A_Init ();                          
 	
-		while (1) 
-		{
-			
-			if (GPIO_PORTB_DATA_R == 0x1E)           //11110 = 0x1E
-			{
-					Current_Value = 0;
-			}
-			if (GPIO_PORTB_DATA_R == 0x1C)           //11100 = 0x1C
-			{
-					Current_Value = 1;
-			}
-			if (GPIO_PORTB_DATA_R == 0x18)           //11000 = 0x18
-			{
-					Current_Value = 2;
-			}
-			if (GPIO_PORTB_DATA_R == 0x11)           //10001 = 0x11
-			{
-					Current_Value = 3;
-			}
-			if (GPIO_PORTB_DATA_R == 0x2)            //00011 = 0x2
-			{
-					Current_Value = 4;
-			}
-			if (GPIO_PORTB_DATA_R == 0x07)           //00111 = 0x07
-			{
-					Current_Value = 5;
-			}
-			if (GPIO_PORTB_DATA_R == 0x0F)           //01111 = 0x0F
-			{
-					Current_Value = 6;
-			}
-			
-			Error = Set_Point - Current_Value;
-			D_Error = Error - Previous_Error;
-			I_Error = I_Error + Error;
-			
-			Speed = KP*Error + KD*D_Error + KI*I_Error ;
-			GPTM_TA_MATCH_R  =  Base_Speed_M1 + Speed;                  
-			GPTM_TB_MATCH_R  =  Base_Speed_M2 - Speed;
+	while (1) 
+	{
 		
-			if(GPTM_TA_MATCH_R >= 15999 )
-			{
-				GPTM_TA_MATCH_R = 15500;
-			}
-			if(GPTM_TB_MATCH_R >= 15999 )
-			{
-				GPTM_TB_MATCH_R = 15500;
-			}
-			if(GPTM_TA_MATCH_R <= 0 )
-			{
-				GPTM_TA_MATCH_R =3000;
-			}
-			if(GPTM_TB_MATCH_R <= 0 )
-			{
-				GPTM_TB_MATCH_R = 3000;
-			}		
-			Previous_Error = Error;		
+		if (GPIO_PORTB_DATA_R == 0x1E)           //11110 = 0x1E
+		{
+				Current_Value = 0;
 		}
+		if (GPIO_PORTB_DATA_R == 0x1C)           //11100 = 0x1C
+		{
+				Current_Value = 1;
+		}
+		if (GPIO_PORTB_DATA_R == 0x18)           //11000 = 0x18
+		{
+				Current_Value = 2;
+		}
+		if (GPIO_PORTB_DATA_R == 0x11)           //10001 = 0x11
+		{
+				Current_Value = 3;
+		}
+		if (GPIO_PORTB_DATA_R == 0x2)            //00011 = 0x2
+		{
+				Current_Value = 4;
+		}
+		if (GPIO_PORTB_DATA_R == 0x07)           //00111 = 0x07
+		{
+				Current_Value = 5;
+		}
+		if (GPIO_PORTB_DATA_R == 0x0F)           //01111 = 0x0F
+		{
+				Current_Value = 6;
+		}
+		
+		Error = Set_Point - Current_Value;
+		D_Error = Error - Previous_Error;
+		I_Error = I_Error + Error;
+		
+		Speed = KP*Error + KD*D_Error + KI*I_Error ;
+		GPTM_TA_MATCH_R  =  Base_Speed_M1 + Speed;                  
+		GPTM_TB_MATCH_R  =  Base_Speed_M2 - Speed;
+	
+		if(GPTM_TA_MATCH_R >= 15999 )
+		{
+			GPTM_TA_MATCH_R = 15500;
+		}
+		if(GPTM_TB_MATCH_R >= 15999 )
+		{
+			GPTM_TB_MATCH_R = 15500;
+		}
+		if(GPTM_TA_MATCH_R <= 0 )
+		{
+			GPTM_TA_MATCH_R =3000;
+		}
+		if(GPTM_TB_MATCH_R <= 0 )
+		{
+			GPTM_TB_MATCH_R = 3000;
+		}		
+		Previous_Error = Error;		
+	}
 }
