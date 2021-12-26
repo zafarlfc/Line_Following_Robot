@@ -17,3 +17,6 @@ In this project I implemented **Proportional Integral Differiential (PID)** algo
 The following image shows the Block Diagram of the Project.
 
 > ![Block Diagram](https://drive.google.com/uc?export=view&id=1NbvhcbL-5nN0u60cw2bgTIA_v6eSqzpn)
+
+### **Explanation**
+The block diagram shows all the connections 
